@@ -6,8 +6,8 @@ export default class BoatReviews extends NavigationMixin(LightningElement) {
   // Private
   boatId;
   error;
-  boatReviews;
-  isLoading;
+  boatReviews = [];
+  isLoading = false;
   
   // Getter and Setter to allow for logic to run on recordId change
   @api
@@ -35,13 +35,14 @@ export default class BoatReviews extends NavigationMixin(LightningElement) {
   // sets isLoading to true during the process and false when it’s completed
   // Gets all the boatReviews from the result, checking for errors.
   getReviews() {
-    if (!this.boatId) { return; }
+    if (!this.boatId || this.boatId == '') { return; }
     this.isLoading = true;
+    this.error = undefined;
     getAllReviews({ boatId: this.boatId }).then((reviews) => {
       this.boatReviews = reviews;
-      this.isLoading = false;
     }).catch(e => {
-      console.error(e);
+      this.error = e;
+    }).finally(() => {
       this.isLoading = false;
     });
   }

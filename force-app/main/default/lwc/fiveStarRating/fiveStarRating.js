@@ -34,7 +34,7 @@ export default class FiveStarRating extends LightningElement {
   //call the initializeRating function after scripts are loaded
   //display a toast with error message if there is an error loading script
   loadScript() {
-    Promise.All([
+    Promise.all([
       loadScript(this, fivestar + '/rating.js'),
       loadStyle(this, fivestar + '/rating.css')
     ]).then(() => {

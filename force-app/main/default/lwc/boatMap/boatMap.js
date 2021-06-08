@@ -46,24 +46,6 @@ export default class BoatMap extends LightningElement {
   error = undefined;
   mapMarkers = [];
 
-  // Initialize messageContext for Message Service
-
-  // Getting record's location to construct map markers using recordId
-  // Wire the getRecord method using ('$boatId')
-  wiredRecord({ error, data }) {
-    // Error handling
-    if (data) {
-      this.error = undefined;
-      const longitude = data.fields.Geolocation__Longitude__s.value;
-      const latitude = data.fields.Geolocation__Latitude__s.value;
-      this.updateMap(longitude, latitude);
-    } else if (error) {
-      this.error = error;
-      this.boatId = undefined;
-      this.mapMarkers = [];
-    }
-  }
-
   // Subscribes to the message channel
   subscribeMC() {
     // recordId is populated on Record Pages, and this component

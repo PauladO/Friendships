@@ -1,6 +1,7 @@
 import { LightningElement, api, wire } from 'lwc';
 import getSimilarBoats from '@salesforce/apex/BoatDataService.getSimilarBoats';
 import { NavigationMixin } from 'lightning/navigation';
+import { getRecord } from 'lightning/uiRecordApi';
 
 export default class SimilarBoats extends NavigationMixin(LightningElement) {
   // Private

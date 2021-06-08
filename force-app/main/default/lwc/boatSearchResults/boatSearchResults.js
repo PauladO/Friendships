@@ -38,10 +38,13 @@ export default class BoatSearchResults extends LightningElement {
     boatTypeId: '$boatTypeId'
   })
   wiredBoats(result) {
-    if (result) {
-      this.boats = JSON.parse(result);
+    this.boats = result.data;
+    if (result.error) {
+        this.error = result.error;
+        this.boats = undefined;
     }
-    this.notifyLoading(false);
+    this.isLoading = false;
+    this.notifyLoading(this.isLoading);
   }
 
   @api

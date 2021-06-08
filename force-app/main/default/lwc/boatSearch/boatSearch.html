@@ -3,9 +3,7 @@
       <!-- Top -->
       <lightning-layout-item size="12">
         <lightning-card title="Find a Boat">
-          <slot name="actions">
-            <lightning-button onclick={createNewBoat} label="New Boat" title="New Boat"></lightning-button>
-          </slot>
+          <lightning-button onclick={createNewBoat} label="New Boat" title="New Boat" slot="actions"></lightning-button>
           <p class="slds-var-p-horizontal_small">
             <!-- boatSearchForm component goes here -->
             <c-boat-search-form onsearch={searchBoats}></c-boat-search-form>

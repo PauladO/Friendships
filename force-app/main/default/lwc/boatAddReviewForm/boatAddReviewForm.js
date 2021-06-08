@@ -10,7 +10,7 @@ const SUCCESS_VARIANT = 'success';
 export default class BoatAddReviewForm extends LightningElement {
   // Private
   boatId;
-  @track rating;
+  rating;
   boatReviewObject = BOAT_REVIEW_OBJECT;
   nameField        = NAME_FIELD;
   commentField     = COMMENT_FIELD;
@@ -63,10 +63,12 @@ export default class BoatAddReviewForm extends LightningElement {
   // TODO: it must reset each lightning-input-field
   handleReset() {
     this.rating = null;
-    const inputFields = this.template.querySelectorAll(
-      'lightning-input-field'
-    ).forEach(field => {
-      field.reset();
-    });
+    const inputFields = this.template.querySelectorAll('lightning-input-field');
+    
+    if (inputFields) {
+      inputFields.forEach(field => {
+        field.reset();
+      });
+    }
   }
 }

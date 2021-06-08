@@ -11,13 +11,13 @@ import BOAT_TYPE_FIELD from '@salesforce/schema/Boat__c.BoatType__c';
 import BOAT_LENGTH_FIELD from '@salesforce/schema/Boat__c.Length__c';
 import BOAT_PRICE_FIELD from '@salesforce/schema/Boat__c.Price__c';
 import BOAT_DESCRIPTION_FIELD from '@salesforce/schema/Boat__c.Description__c';
-import getRecord from 'lightning/uiRecordApi';
 import BOATMC from '@salesforce/messageChannel/BoatMessageChannel__c';
-import { subscribe, unsubscribe, MessageContext, APPLICATION_SCOPE } from 'lightning/messageService';
-import { getFieldValue } from 'lightning/uiRecordApi';
+import { subscribe,  MessageContext, APPLICATION_SCOPE } from 'lightning/messageService';
+import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { NavigationMixin } from 'lightning/navigation';
 
 const BOAT_FIELDS = [BOAT_ID_FIELD, BOAT_NAME_FIELD, BOAT_TYPE_FIELD, BOAT_LENGTH_FIELD, BOAT_PRICE_FIELD, BOAT_DESCRIPTION_FIELD ];
+
 export default class BoatDetailTabs extends NavigationMixin(LightningElement) {
   boatId;
 
@@ -37,16 +37,16 @@ export default class BoatDetailTabs extends NavigationMixin(LightningElement) {
     labelFullDetails,
     labelPleaseSelectABoat,
   };
-  
+ 
   // Decide when to show or hide the icon
   // returns 'utility:anchor' or null
   get detailsTabIconName() {
-    return this.wiredRecord.data ? 'utility:anchor' : null;
+    return this.wiredRecord && this.wiredRecord.data ? 'utility:anchor' : null;
   }
   
   // Utilize getFieldValue to extract the boat name from the record wire
   get boatName() {
-    return getFieldValue(this.wiredRecord, 'Name');
+    return getFieldValue(this.wiredRecord, BOAT_NAME_FIELD);
   }
   
   // Private
